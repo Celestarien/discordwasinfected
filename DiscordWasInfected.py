@@ -1,14 +1,16 @@
 from tkinter import Entry, Button, Text, Label, Tk, END, RAISED 
 import os
 import time
+import re
+import hashlib
 
 
 ##########################################
 #                FUNCTIONS               #
 ##########################################
 def isInfected():
-    title_label = Label(root, text="Your Discord is infected !\nPlease check your file : \n" + path_discord)
-    title_label.pack(anchor='n')
+    title_label = Label(root, text="Your Discord is infected !\nPlease check your file : \n" + path_index_discord)
+    title_label.place(relx = 0.5, rely = 0.5, anchor = 'center') 
 
 
 ##########################################
@@ -24,53 +26,55 @@ root.configure(bg='#23272a')
 
 # Create title label
 title_label = Label(root, text="DWI - Discord Was Infected")
-title_label.pack(anchor='n')
-
-
+title_label.place(relx = 0.5, rely = 0.4, anchor = 'center') 
+# title_label.pack(anchor='n')
 
 
 ##########################################
 #                SCRIPTS                 #
 ##########################################
+version = []
 
-# We try to find version 0.0.308 and 0.0.307
-version_path_308 = str(os.path.expandvars(r'%APPDATA%\discord\0.0.308'))
-version_path_307 = str(os.path.expandvars(r'%APPDATA%\discord\0.0.307'))
+regex = re.compile('^[0-9.]+.[0-9.]+.[0-9]')
+path = str(os.path.expandvars(r"%APPDATA%\discord"))
+list_dir = os.listdir(path)
+for diretorie in list_dir:
+    a = regex.findall(diretorie)
+    if a:
+       version = a
 
 # Get Discord Path
-if os.path.exists(version_path_308):
-    path_discord = os.path.expandvars(r'%APPDATA%\discord\0.0.308\modules\discord_desktop_core')
-elif os.path.exists(version_path_307):
-    path_discord = os.path.expandvars(r'%APPDATA%\discord\0.0.307\modules\discord_desktop_core')
-else:
-    title_label = Label(root, text="Your version of discord is not recognized\nDo not hesitate to take a tour on the GitHub: \nhttps://github.com/Celestarien/discordwasinfected")
-    title_label.pack(anchor='n')
+path_discord = os.path.expandvars(r'%APPDATA%\discord\\' + version[0] + '\modules\discord_desktop_core')
+if not os.path.exists(path_discord):
+    path_discord = ""
+    print('Your version of discord is not recognized\nDo not hesitate to take a tour on the GitHub: \nhttps://github.com/Celestarien/discordwasinfected')
+    time.sleep(10)
 
 # Add the file to scan
-path_discord = str(path_discord) + "\index.js"
-# Open the file
-discord_file = open(path_discord, "r")
+path_index_discord = str(path_discord) + "\index.js"
 
-# Read lines from file
-Lines = discord_file.readlines()
+# Original Hash
+original_hash = "5fc5801cdb0fbf4aad69bb9e6f7b8957f664e872"
+# Check actual hash
+hasher = hashlib.sha1()
+with open(path_index_discord, 'rb') as afile:
+    buf = afile.read()
+    while len(buf) > 0:
+        hasher.update(buf)
+        buf = afile.read()
+actual_hash = hasher.hexdigest()
 
-number_of_lines = len(Lines)
-
-if number_of_lines > 1:
-        isInfected()
+if original_hash == actual_hash:
+    title_label = Label(root, text="Your Discord is safe ! Have fun !")
+    title_label.place(relx = 0.5, rely = 0.5, anchor = 'center') 
 else:
-    for line in Lines:
-        if number_of_lines == 1 and line == "module.exports = require('./core.asar');":
-            title_label = Label(root, text="Your Discord is safe ! Have fun !")
-            title_label.pack(anchor='n')
-        else:
-            isInfected()
+    isInfected()
 
 ##########################################
 #                CREDITS                 #
 ##########################################
 title_label = Label(root, text="Dev by ♥ from Celestarien.")
-title_label.pack(anchor='n')
+title_label.place(relx = 0.5, rely = 0.6, anchor = 'center') 
 
 
 
