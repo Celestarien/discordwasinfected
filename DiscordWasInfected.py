@@ -9,7 +9,7 @@ import hashlib
 #                FUNCTIONS               #
 ##########################################
 def isInfected():
-    title_label = Label(root, text="Your Discord is infected !\nPlease check your file : \n" + path_index_discord)
+    title_label = Label(root, text="Your Discord is infected !\nPlease check your file : \n" + path_index_discord, bg='#23272a', fg='red')
     title_label.place(relx = 0.5, rely = 0.5, anchor = 'center') 
 
 
@@ -25,7 +25,7 @@ root.configure(bg='#23272a')
 
 
 # Create title label
-title_label = Label(root, text="DWI - Discord Was Infected")
+title_label = Label(root, text="DWI - Discord Was Infected", bg='#23272a', fg='#FFFFFF')
 title_label.place(relx = 0.5, rely = 0.4, anchor = 'center') 
 # title_label.pack(anchor='n')
 
@@ -65,7 +65,7 @@ with open(path_index_discord, 'rb') as afile:
 actual_hash = hasher.hexdigest()
 
 if original_hash == actual_hash:
-    title_label = Label(root, text="Your Discord is safe ! Have fun !")
+    title_label = Label(root, text="Your Discord is safe ! Have fun !", bg='#23272a', fg='#2b1')
     title_label.place(relx = 0.5, rely = 0.5, anchor = 'center') 
 else:
     isInfected()
@@ -73,8 +73,10 @@ else:
 ##########################################
 #                CREDITS                 #
 ##########################################
-title_label = Label(root, text="Dev by ♥ from Celestarien.")
+title_label = Label(root, text="Github : https://github.com/Celestarien/discordwasinfected", bg='#23272a', fg='#FFFFFF')
 title_label.place(relx = 0.5, rely = 0.6, anchor = 'center') 
+title_label = Label(root, text="Dev by ♥ from Celestarien & Alexander3312.", bg='#23272a', fg='#FFFFFF')
+title_label.place(relx = 0.5, rely = 0.7, anchor = 'center')
 
 
 
