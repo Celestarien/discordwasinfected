@@ -4,12 +4,13 @@ import time
 import re
 import hashlib
 
+bg_color = '#23272a'
 
 ##########################################
 #                FUNCTIONS               #
 ##########################################
 def isInfected():
-    title_label = Label(root, text="Your Discord is infected !\nPlease check your file : \n" + path_index_discord, bg='#23272a', fg='red')
+    title_label = Label(root, text="Your Discord is infected !\nPlease check your file : \n" + path_index_discord, bg=bg_color, fg='red')
     title_label.place(relx = 0.5, rely = 0.5, anchor = 'center') 
 
 
@@ -21,11 +22,11 @@ def isInfected():
 root = Tk()
 root.title("DWI - Discord Was Infected")
 root.geometry("800x400")
-root.configure(bg='#23272a')
+root.configure(bg=bg_color)
 
 
 # Create title label
-title_label = Label(root, text="DWI - Discord Was Infected", bg='#23272a', fg='#FFFFFF')
+title_label = Label(root, text="DWI - Discord Was Infected", bg=bg_color, fg='white')
 title_label.place(relx = 0.5, rely = 0.4, anchor = 'center') 
 # title_label.pack(anchor='n')
 
@@ -65,7 +66,7 @@ with open(path_index_discord, 'rb') as afile:
 actual_hash = hasher.hexdigest()
 
 if original_hash == actual_hash:
-    title_label = Label(root, text="Your Discord is safe ! Have fun !", bg='#23272a', fg='#2b1')
+    title_label = Label(root, text="Your Discord is safe ! Have fun !", bg=bg_color, fg='#2b1')
     title_label.place(relx = 0.5, rely = 0.5, anchor = 'center') 
 else:
     isInfected()
@@ -73,9 +74,9 @@ else:
 ##########################################
 #                CREDITS                 #
 ##########################################
-title_label = Label(root, text="Github : https://github.com/Celestarien/discordwasinfected", bg='#23272a', fg='#FFFFFF')
+title_label = Label(root, text="Github : https://github.com/Celestarien/discordwasinfected", bg=bg_color, fg='white')
 title_label.place(relx = 0.5, rely = 0.6, anchor = 'center') 
-title_label = Label(root, text="Dev by ♥ from Celestarien & Alexander3312.", bg='#23272a', fg='#FFFFFF')
+title_label = Label(root, text="Dev by ♥ from Celestarien & Alexander3312.", bg=bg_color, fg='white')
 title_label.place(relx = 0.5, rely = 0.7, anchor = 'center')
 
 
