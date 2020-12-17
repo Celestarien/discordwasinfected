@@ -1,0 +1,25 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "Alexander3312",
+      "name": "Alexander3312",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/36813450?v=4",
+      "profile": "https://github.com/Alexander3312",
+      "contributions": [
+        "test",
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "discordwasinfected",
+  "projectOwner": "Celestarien",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
