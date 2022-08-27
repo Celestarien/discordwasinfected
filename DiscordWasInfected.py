@@ -27,7 +27,7 @@ root.configure(bg=bg_color)
 
 # Create title label
 title_label = Label(root, text="DWI - Discord Was Infected", bg=bg_color, fg='white')
-title_label.place(relx = 0.5, rely = 0.4, anchor = 'center') 
+title_label.place(relx = 0.5, rely = 0.4, anchor = 'center')
 # title_label.pack(anchor='n')
 
 
@@ -40,9 +40,8 @@ regex = re.compile('^[0-9.]+.[0-9.]+.[0-9]')
 path = str(os.path.expandvars(r"%APPDATA%\discord"))
 list_dir = os.listdir(path)
 for diretorie in list_dir:
-    a = regex.findall(diretorie)
-    if a:
-       version = a
+    if a := regex.findall(diretorie):
+        version = a
 
 # Get Discord Path
 path_discord = os.path.expandvars(r'%APPDATA%\discord\\' + version[0] + '\modules\discord_desktop_core')
@@ -75,7 +74,7 @@ else:
 #                CREDITS                 #
 ##########################################
 title_label = Label(root, text="Github : https://github.com/Celestarien/discordwasinfected", bg=bg_color, fg='white')
-title_label.place(relx = 0.5, rely = 0.6, anchor = 'center') 
+title_label.place(relx = 0.5, rely = 0.6, anchor = 'center')
 title_label = Label(root, text="Dev by ♥ from Celestarien & Alexander3312.", bg=bg_color, fg='white')
 title_label.place(relx = 0.5, rely = 0.7, anchor = 'center')
 
